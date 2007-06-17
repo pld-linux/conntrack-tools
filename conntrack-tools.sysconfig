@@ -1,0 +1,6 @@
+# Config file for conntrack-tools startup
+
+CONNTRACKD_OPTS="-S -d"
+
+# This must be last line !
+# vi:syntax=sh
