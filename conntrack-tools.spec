@@ -32,12 +32,14 @@ statistics collector as well.
 
 %prep
 %setup -q
+find -name .svn -print0 | xargs -0 rm -rf
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
+CFLAGS="%{rpmcflags} -D__KERNEL_STRICT_NAMES=1"
 %configure
 %{__make}
 
@@ -66,8 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README NEWS TODO
+%doc AUTHORS ChangeLog TODO examples
 %attr(755,root,root) %{_sbindir}/*
+%{_libdir}/%{name}/ct_proto*.so
 %{_mandir}/man8/*
 #%attr(754,root,root) /etc/rc.d/init.d/%{name}
 #%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/
