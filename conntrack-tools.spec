@@ -2,7 +2,7 @@ Summary:	The userspace connection tracking table administration program
 Name:		conntrack-tools
 Version:	0.9.3
 Release:	0.1
-License:	BSD
+License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
 # Source0-md5:	b8a0297c538bd1fb708b2c9ed3f31676
