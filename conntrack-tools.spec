@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog TODO examples
 %attr(755,root,root) %{_sbindir}/*
-%{_libdir}/%{name}/ct_proto*.so
+%attr(755,root,root) %{_libdir}/%{name}/ct_proto*.so
 %{_mandir}/man8/*
 #%attr(754,root,root) /etc/rc.d/init.d/%{name}
 #%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/
