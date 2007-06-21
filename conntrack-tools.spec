@@ -1,4 +1,5 @@
 Summary:	The userspace connection tracking table administration program
+Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
 Version:	0.9.3
 Release:	0.1
@@ -29,6 +30,18 @@ manage the in-kernel connection tracking state table from userspace.
 On the other hand, conntrackd covers the specific aspects of stateful
 firewalls to enable highly available scenarios, and can be used as
 statistics collector as well.
+
+%description -l pl.UTF-8
+conntrack-tools to zbiór narzędzi przeznaczonych dla administratorów
+systemów. Są to conntrack (interfejs przestrzeni użytkownika
+obsługiwany z linii poleceń) i conntrackd (demon przestrzeni
+użytkownika). Narzędzie conntrack udostępnia pełny interfejs mający za
+zadanie zastąpić stary interfejs /proc/net/ip_conntrack. Przy użyciu
+conntracka można oglądać i zarządzać z przestrzeni użytkownika tablicą
+stanów śledzienia połączeń w jądrze. Z drugiej strony conntrackd
+pokrywa specyficzne aspekty firewalli stanowych udostępniając
+scenariusze wysokiej dostępności; może także służyć do zbierania
+statystyk.
 
 %prep
 %setup -q
