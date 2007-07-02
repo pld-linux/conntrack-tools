@@ -1,19 +1,19 @@
 Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
-Version:	0.9.3
+Version:	0.9.4
 Release:	0.1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	b8a0297c538bd1fb708b2c9ed3f31676
+# Source0-md5:	0d559c0fb4874f69ff4d2b52f22d741d
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
 URL:		http://people.netfilter.org/pablo/conntrack-tools/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libnetfilter_conntrack-devel >= 0.0.75
+BuildRequires:	libnetfilter_conntrack-devel >= 0.0.80
 BuildRequires:	libnfnetlink-devel >= 0.0.25-1
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.228
@@ -83,8 +83,6 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog TODO examples
 %attr(755,root,root) %{_sbindir}/*
-%dir %{_libdir}/%{name}
-%attr(755,root,root) %{_libdir}/%{name}/ct_proto*.so
 %{_mandir}/man8/*
 %attr(754,root,root) /etc/rc.d/init.d/conntrackd
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conntrackd/conntrackd.conf
