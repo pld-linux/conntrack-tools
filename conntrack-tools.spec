@@ -12,12 +12,16 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
 URL:		http://people.netfilter.org/pablo/conntrack-tools/
 BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	automake >= 1.6
+BuildRequires:	bison
+BuildRequires:	flex
 BuildRequires:	libnetfilter_conntrack-devel >= 0.0.80
 BuildRequires:	libnfnetlink-devel >= 0.0.25-1
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
+Obsoletes:	conntrack
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -82,8 +86,9 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog TODO examples
-%attr(755,root,root) %{_sbindir}/*
-%{_mandir}/man8/*
+%attr(755,root,root) %{_sbindir}/conntrack
+%attr(755,root,root) %{_sbindir}/conntrackd
+%{_mandir}/man8/conntrack.8*
 %attr(754,root,root) /etc/rc.d/init.d/conntrackd
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conntrackd/conntrackd.conf
 %dir %{_sysconfdir}/conntrackd
