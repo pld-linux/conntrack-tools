@@ -10,7 +10,6 @@ Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{versi
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
-Patch0:		%{name}-include.patch
 URL:		http://people.netfilter.org/pablo/conntrack-tools/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1.6
