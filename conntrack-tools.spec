@@ -10,8 +10,8 @@ Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{versi
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
-URL:		http://people.netfilter.org/pablo/conntrack-tools/
 Patch0:		%{name}-limits.patch
+URL:		http://people.netfilter.org/pablo/conntrack-tools/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1.6
 BuildRequires:	bison
