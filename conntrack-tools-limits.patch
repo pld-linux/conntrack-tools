@@ -1,18 +1,18 @@
-diff -Nur conntrack-tools-0.9.10/src/mcast.c conntrack-tools-0.9.10/src/mcast.c
---- conntrack-tools-0.9.10/src/mcast.c	2009-01-26 11:21:51.472204316 +0000
-+++ conntrack-tools-0.9.10/src/mcast.c	2009-01-26 11:15:00.000000000 +0000
+diff -burNp conntrack-tools-0.9.11/src/mcast.c conntrack-tools-0.9.11-dud/src/mcast.c
+--- conntrack-tools-0.9.11/src/mcast.c	2009-02-21 14:04:43.000000000 +0100
++++ conntrack-tools-0.9.11-dud/src/mcast.c	2009-03-18 18:49:00.398734264 +0100
 @@ -29,6 +29,7 @@
- #include <sys/ioctl.h>
  #include <net/if.h>
  #include <errno.h>
+ #include <libnfnetlink/libnfnetlink.h>
 +#include <limits.h>
  
  struct mcast_sock *mcast_server_create(struct mcast_conf *conf)
  {
-diff -Nur conntrack-tools-0.9.10/src/sync-mode.c conntrack-tools-0.9.10/src/sync-mode.c
---- conntrack-tools-0.9.10/src/sync-mode.c	2009-01-26 11:21:57.201787444 +0000
-+++ conntrack-tools-0.9.10/src/sync-mode.c	2009-01-26 11:15:26.000000000 +0000
-@@ -29,6 +29,7 @@
+diff -burNp conntrack-tools-0.9.11/src/sync-mode.c conntrack-tools-0.9.11-dud/src/sync-mode.c
+--- conntrack-tools-0.9.11/src/sync-mode.c	2009-02-20 20:42:24.000000000 +0100
++++ conntrack-tools-0.9.11-dud/src/sync-mode.c	2009-03-18 18:49:27.525299013 +0100
+@@ -28,6 +28,7 @@
  #include "queue.h"
  
  #include <errno.h>
