@@ -1,12 +1,12 @@
 Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
-Version:	0.9.11
+Version:	0.9.12
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	ae97d335ad44e9611adde881490c8ec9
+# Source0-md5:	a082eb2354d12250a3f81363440b73f3
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
