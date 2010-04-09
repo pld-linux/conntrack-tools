@@ -1,12 +1,12 @@
 Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
-Version:	0.9.12
+Version:	0.9.14
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	a082eb2354d12250a3f81363440b73f3
+# Source0-md5:	7e9344fe85bb68bcf65c35034add6655
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
@@ -15,15 +15,15 @@ URL:		http://people.netfilter.org/pablo/conntrack-tools/
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1.6
 BuildRequires:	bison
-BuildRequires:	flex
-BuildRequires:	libnetfilter_conntrack-devel >= 0.0.99
-BuildRequires:	libnfnetlink-devel >= 0.0.40
+BuildRequires:	flex >= 2.5.33
+BuildRequires:	libnetfilter_conntrack-devel >= 0.0.101
+BuildRequires:	libnfnetlink-devel >= 1.0.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
-Requires:	libnetfilter_conntrack >= 0.0.99
-Requires:	libnfnetlink >= 0.0.40
+Requires:	libnetfilter_conntrack >= 0.0.101
+Requires:	libnfnetlink >= 1.0.0
 Obsoletes:	conntrack
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -89,7 +89,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog TODO
+%doc AUTHORS TODO
 %attr(755,root,root) %{_sbindir}/conntrack
 %attr(755,root,root) %{_sbindir}/conntrackd
 %{_mandir}/man8/conntrack.8*
