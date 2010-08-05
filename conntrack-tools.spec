@@ -22,7 +22,7 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
-Requires:	libnetfilter_conntrack >= 0.0.101
+Requires:	libnetfilter_conntrack >= 0.0.102
 Requires:	libnfnetlink >= 1.0.0
 Obsoletes:	conntrack
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
