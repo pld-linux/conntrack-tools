@@ -12,17 +12,17 @@ Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
 Patch0:		%{name}-limits.patch
 URL:		http://conntrack-tools.netfilter.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1.6
 BuildRequires:	bison
 BuildRequires:	flex >= 2.5.33
-BuildRequires:	libnetfilter_conntrack-devel >= 0.0.102
+BuildRequires:	libnetfilter_conntrack-devel >= 0.9.1
 BuildRequires:	libnfnetlink-devel >= 1.0.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
-Requires:	libnetfilter_conntrack >= 0.0.102
+Requires:	libnetfilter_conntrack >= 0.9.1
 Requires:	libnfnetlink >= 1.0.0
 Obsoletes:	conntrack
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -53,15 +53,14 @@ statystyk.
 %prep
 %setup -q
 %patch0 -p1
-find -name .svn -print0 | xargs -0 rm -rf
 
 %build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__automake}
-CFLAGS="%{rpmcflags} -D__KERNEL_STRICT_NAMES=1"
-%configure
+%configure \
+	--disable-silent-rules
 %{__make}
 
 %install
