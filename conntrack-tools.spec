@@ -1,28 +1,34 @@
 Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
-Version:	1.0.1
-Release:	2
+Version:	1.2.0
+Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	8a60f02a177fc31fe40cc992c4de90e2
+# Source0-md5:	8e20330d6ca3a3f23552aa900b1d467c
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
 Patch0:		%{name}-limits.patch
+Patch1:		%{name}-include.patch
+Patch2:		%{name}-timeout.patch
 URL:		http://conntrack-tools.netfilter.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1.6
 BuildRequires:	bison
 BuildRequires:	flex >= 2.5.33
-BuildRequires:	libnetfilter_conntrack-devel >= 0.9.1
+BuildRequires:	libmnl-devel >= 1.0.0
+BuildRequires:	libnetfilter_conntrack-devel >= 1.0.1
+BuildRequires:	libnetfilter_cttimeout-devel >= 1.0.0
 BuildRequires:	libnfnetlink-devel >= 1.0.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
-Requires:	libnetfilter_conntrack >= 0.9.1
+Requires:	libmnl >= 1.0.0
+Requires:	libnetfilter_conntrack >= 1.0.1
+Requires:	libnetfilter_cttimeout >= 1.0.0
 Requires:	libnfnetlink >= 1.0.0
 Obsoletes:	conntrack
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -53,6 +59,8 @@ statystyk.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -91,8 +99,10 @@ fi
 %doc AUTHORS TODO
 %attr(755,root,root) %{_sbindir}/conntrack
 %attr(755,root,root) %{_sbindir}/conntrackd
+%attr(755,root,root) %{_sbindir}/nfct
 %{_mandir}/man8/conntrack.8*
 %{_mandir}/man8/conntrackd.8*
+%{_mandir}/man8/nfct.8*
 %attr(754,root,root) /etc/rc.d/init.d/conntrackd
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conntrackd/conntrackd.conf
 %dir %{_sysconfdir}/conntrackd

@@ -1,0 +1,10 @@
+--- conntrack-tools-1.2.0/src/parse.c.orig	2012-05-17 16:21:01.297929729 +0200
++++ conntrack-tools-1.2.0/src/parse.c	2012-05-27 10:57:22.129982817 +0200
+@@ -20,6 +20,7 @@
+ #include "network.h"
+ 
+ #include <libnetfilter_conntrack/libnetfilter_conntrack.h>
++#include <stdlib.h>
+ 
+ #ifndef ssizeof
+ #define ssizeof(x) (int)sizeof(x)
