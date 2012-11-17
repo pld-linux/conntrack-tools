@@ -49,6 +49,16 @@ stop() {
 	fi
 }
 
+condrestart() {
+	if [ ! -f /var/lock/subsys/conntrackd ]; then
+		msg_not_running conntrackd
+		RETVAL=$1
+		return
+	fi
+	stop
+	start
+}
+
 reload() {
 	if [ -f /var/lock/subsys/conntrackd ]; then
 		msg_reloading conntrackd
@@ -72,18 +82,18 @@ case "$1" in
 	stop
 	start
 	;;
-  reload)
-  	reload
+  try-restart)
+	condrestart 0
 	;;
-  force-reload)
-	reload
+  reload|force-reload)
+  	reload
 	;;
   status)
 	status conntrackd
 	RETVAL=$?
 	;;
   *)
-	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	msg_usage "$0 {start|stop|restart|try-restart|reload|force-reload|status}"
 	exit 3
 esac
 
