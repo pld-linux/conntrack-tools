@@ -30,7 +30,7 @@ start() {
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/conntrackd ]; then
 		msg_starting conntrackd
-		daemon conntrackd $CONNTRACKD_OPTS
+		daemon /usr/sbin/conntrackd $CONNTRACKD_OPTS
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/conntrackd
 	else
@@ -73,10 +73,10 @@ reload() {
 RETVAL=0
 case "$1" in
   start)
-  	start
+	start
 	;;
   stop)
-  	stop
+	stop
 	;;
   restart)
 	stop
@@ -86,7 +86,7 @@ case "$1" in
 	condrestart 0
 	;;
   reload|force-reload)
-  	reload
+	reload
 	;;
   status)
 	status conntrackd
