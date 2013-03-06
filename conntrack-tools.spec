@@ -1,12 +1,12 @@
 Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
-Version:	1.4.0
+Version:	1.4.1
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	ee737c774e01349f75e935228a2d851b
+# Source0-md5:	3cc4703d883c6f07085e29bdc993222b
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
@@ -31,7 +31,7 @@ Requires:	libmnl >= 1.0.3
 Requires:	libnetfilter_conntrack >= 1.0.2
 Requires:	libnetfilter_cthelper >= 1.0.0
 Requires:	libnetfilter_cttimeout >= 1.0.0
-Requires:	libnetfilter_queue-devel >= 1.0.2
+Requires:	libnetfilter_queue >= 1.0.2
 Requires:	libnfnetlink >= 1.0.1
 Obsoletes:	conntrack
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -77,7 +77,7 @@ statystyk.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-        DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/conntrackd
 install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/conntrackd
@@ -101,7 +101,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS TODO
+%doc AUTHORS TODO doc/helper doc/stats doc/sync
 %attr(755,root,root) %{_sbindir}/conntrack
 %attr(755,root,root) %{_sbindir}/conntrackd
 %attr(755,root,root) %{_sbindir}/nfct
