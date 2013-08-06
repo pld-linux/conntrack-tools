@@ -1,12 +1,12 @@
 Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
-Version:	1.4.1
+Version:	1.4.2
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	3cc4703d883c6f07085e29bdc993222b
+# Source0-md5:	b1f9d006e7bf000a77395ff7cd3fac16
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
@@ -18,7 +18,7 @@ BuildRequires:	automake >= 1.6
 BuildRequires:	bison
 BuildRequires:	flex >= 2.5.33
 BuildRequires:	libmnl-devel >= 1.0.3
-BuildRequires:	libnetfilter_conntrack-devel >= 1.0.3
+BuildRequires:	libnetfilter_conntrack-devel >= 1.0.4
 BuildRequires:	libnetfilter_cthelper-devel >= 1.0.0
 BuildRequires:	libnetfilter_cttimeout-devel >= 1.0.0
 BuildRequires:	libnetfilter_queue-devel >= 1.0.2
@@ -28,7 +28,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
 Requires:	libmnl >= 1.0.3
-Requires:	libnetfilter_conntrack >= 1.0.3
+Requires:	libnetfilter_conntrack >= 1.0.4
 Requires:	libnetfilter_cthelper >= 1.0.0
 Requires:	libnetfilter_cttimeout >= 1.0.0
 Requires:	libnetfilter_queue >= 1.0.2
