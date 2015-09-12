@@ -1,12 +1,12 @@
 Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
-Version:	1.4.2
-Release:	2
+Version:	1.4.3
+Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	b1f9d006e7bf000a77395ff7cd3fac16
+# Source0-md5:	966a5d8f846ddf5304bcd12685c0707f
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
@@ -106,8 +106,13 @@ fi
 %attr(755,root,root) %{_sbindir}/conntrackd
 %attr(755,root,root) %{_sbindir}/nfct
 %dir %{_libdir}/conntrack-tools
+%attr(755,root,root) %{_libdir}/conntrack-tools/ct_helper_amanda.so
+%attr(755,root,root) %{_libdir}/conntrack-tools/ct_helper_dhcpv6.so
 %attr(755,root,root) %{_libdir}/conntrack-tools/ct_helper_ftp.so
 %attr(755,root,root) %{_libdir}/conntrack-tools/ct_helper_rpc.so
+%attr(755,root,root) %{_libdir}/conntrack-tools/ct_helper_sane.so
+%attr(755,root,root) %{_libdir}/conntrack-tools/ct_helper_ssdp.so
+%attr(755,root,root) %{_libdir}/conntrack-tools/ct_helper_tftp.so
 %attr(755,root,root) %{_libdir}/conntrack-tools/ct_helper_tns.so
 %dir %{_sysconfdir}/conntrackd
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conntrackd/conntrackd.conf
