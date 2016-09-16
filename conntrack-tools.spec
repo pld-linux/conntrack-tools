@@ -1,24 +1,26 @@
+#
+# Conditional build:
+%bcond_with	systemd		# systemd integration (requires >= 227)
+#
 Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
-Version:	1.4.3
+Version:	1.4.4
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	966a5d8f846ddf5304bcd12685c0707f
+# Source0-md5:	acd9e0b27cf16ae3092ba900e4d7560e
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
-Patch0:		%{name}-limits.patch
-Patch1:		%{name}-include.patch
 URL:		http://conntrack-tools.netfilter.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1.6
 BuildRequires:	bison
 BuildRequires:	flex >= 2.5.33
 BuildRequires:	libmnl-devel >= 1.0.3
-BuildRequires:	libnetfilter_conntrack-devel >= 1.0.4
+BuildRequires:	libnetfilter_conntrack-devel >= 1.0.6
 BuildRequires:	libnetfilter_cthelper-devel >= 1.0.0
 BuildRequires:	libnetfilter_cttimeout-devel >= 1.0.0
 BuildRequires:	libnetfilter_queue-devel >= 1.0.2
@@ -26,13 +28,15 @@ BuildRequires:	libnfnetlink-devel >= 1.0.1
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.228
+%{?with_systemd:BuildRequires:	systemd-devel >= 1:227}
 Requires(post,preun):	/sbin/chkconfig
 Requires:	libmnl >= 1.0.3
-Requires:	libnetfilter_conntrack >= 1.0.4
+Requires:	libnetfilter_conntrack >= 1.0.6
 Requires:	libnetfilter_cthelper >= 1.0.0
 Requires:	libnetfilter_cttimeout >= 1.0.0
 Requires:	libnetfilter_queue >= 1.0.2
 Requires:	libnfnetlink >= 1.0.1
+%{?with_systemd:Requires:	systemd-libs >= 1:227}
 Obsoletes:	conntrack
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -61,8 +65,6 @@ statystyk.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -118,6 +120,7 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conntrackd/conntrackd.conf
 %attr(754,root,root) /etc/rc.d/init.d/conntrackd
 %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/conntrackd
+%{_mandir}/man5/conntrackd.conf.5*
 %{_mandir}/man8/conntrack.8*
 %{_mandir}/man8/conntrackd.8*
 %{_mandir}/man8/nfct.8*
