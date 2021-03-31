@@ -6,7 +6,7 @@ Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
 Version:	1.4.6
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	https://netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
@@ -14,6 +14,7 @@ Source0:	https://netfilter.org/projects/conntrack-tools/files/%{name}-%{version}
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
+Source4:	conntrackd.service
 URL:		http://conntrack-tools.netfilter.org/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1.6
@@ -27,7 +28,7 @@ BuildRequires:	libnetfilter_queue-devel >= 1.0.2
 BuildRequires:	libnfnetlink-devel >= 1.0.1
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.228
+BuildRequires:	rpmbuild(macros) >= 1.644
 %{?with_systemd:BuildRequires:	systemd-devel >= 1:227}
 Requires(post,preun):	/sbin/chkconfig
 Requires:	libmnl >= 1.0.3
@@ -85,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/conntrackd
 install -D %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/conntrackd
 install -D %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/conntrackd/conntrackd.conf
+%if %{with systemd}
+install -D %{SOURCE4} $RPM_BUILD_ROOT%{systemdunitdir}/conntrackd.service
+%endif
 
 # dlopened modules
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/conntrack-tools/*.la
@@ -95,12 +99,20 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/chkconfig --add conntrackd
 %service conntrackd restart
+%{?with_systemd:%systemd_post conntrackd.service}
 
 %preun
 if [ "$1" = "0" ]; then
 	%service -q conntrackd stop
 	/sbin/chkconfig --del conntrackd
 fi
+%{?with_systemd:%systemd_preun conntrackd.service}
+
+%postun
+%{?with_systemd:%systemd_reload}
+
+%triggerpostun -- conntrack-tools < 1.4.6-2
+%{?with_systemd:%systemd_trigger conntrackd.service}
 
 %files
 %defattr(644,root,root,755)
@@ -127,3 +139,4 @@ fi
 %{_mandir}/man8/conntrack.8*
 %{_mandir}/man8/conntrackd.8*
 %{_mandir}/man8/nfct.8*
+%{?with_systemd:%{systemdunitdir}/conntrackd.service}
