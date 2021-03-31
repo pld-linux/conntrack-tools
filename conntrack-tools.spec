@@ -72,7 +72,8 @@ statystyk.
 %{__autoconf}
 %{__automake}
 %configure \
-	--disable-silent-rules
+	--disable-silent-rules \
+	%{?with_systemd:--enable-systemd}
 %{__make}
 
 %install
