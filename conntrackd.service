@@ -1,6 +1,6 @@
 [Unit]
 Description=connection tracking daemon for debugging and High Availablity
-After=network-pre.target
+Before=network-pre.target
 Wants=network-pre.target
 
 [Service]
