@@ -5,12 +5,12 @@
 Summary:	The userspace connection tracking table administration program
 Summary(pl.UTF-8):	Program przestrzeni użytkownika do zarządzania tablicą śledzenia połączeń
 Name:		conntrack-tools
-Version:	1.4.7
+Version:	1.4.8
 Release:	1
 License:	GPL v2
 Group:		Applications/Networking
-Source0:	https://netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.bz2
-# Source0-md5:	ec4e49a499f8f1430c40b537024ad7d7
+Source0:	https://netfilter.org/projects/conntrack-tools/files/%{name}-%{version}.tar.xz
+# Source0-md5:	47662cc3622fa91b5205054a393163a5
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Source3:	%{name}.conf
@@ -21,7 +21,7 @@ BuildRequires:	automake >= 1.6
 BuildRequires:	bison
 BuildRequires:	flex >= 2.5.33
 BuildRequires:	libmnl-devel >= 1.0.3
-BuildRequires:	libnetfilter_conntrack-devel >= 1.0.8
+BuildRequires:	libnetfilter_conntrack-devel >= 1.0.9
 BuildRequires:	libnetfilter_cthelper-devel >= 1.0.0
 BuildRequires:	libnetfilter_cttimeout-devel >= 1.0.0
 BuildRequires:	libnetfilter_queue-devel >= 1.0.2
@@ -31,9 +31,11 @@ BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.644
 %{?with_systemd:BuildRequires:	systemd-devel >= 1:227}
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 Requires(post,preun):	/sbin/chkconfig
 Requires:	libmnl >= 1.0.3
-Requires:	libnetfilter_conntrack >= 1.0.8
+Requires:	libnetfilter_conntrack >= 1.0.9
 Requires:	libnetfilter_cthelper >= 1.0.0
 Requires:	libnetfilter_cttimeout >= 1.0.0
 Requires:	libnetfilter_queue >= 1.0.2
